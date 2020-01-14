@@ -1,0 +1,458 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* trilab_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-09 23:32+0000\n"
+"PO-Revision-Date: 2020-01-09 23:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: trilab_invoice
+#: model:ir.actions.report,print_report_name:trilab_invoice.account_invoices_pl
+msgid "(object._get_report_base_filename())"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.trilab_include_vat_number_3
+msgid "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Fiscal number\"/>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.trilab_include_vat_number_3
+msgid "<i class=\"fa fa-envelope fa-fw\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.trilab_include_vat_number_3
+msgid "<i class=\"fa fa-globe\" role=\"img\" aria-label=\"Website\" title=\"Website\"/>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.trilab_include_vat_number_3
+msgid "<i class=\"fa fa-phone fa-fw\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span><b><font style=\"font-size: 18px;\">Buyer:</font></b></span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Description</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Disc.%</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Items after correction:</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Items prior to correction:</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>NET amount</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Quantity</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Taxes</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Unit Price NET</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Unit price NET</span>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>Faktura korygowana:</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>GROSS amount</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>NET amount</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>Przyczyna korekty:</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>Sale date:</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>VAT amount in PLN</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>VAT amount</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<strong>VAT rate</strong>"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model,name:trilab_invoice.model_account_move_reversal
+msgid "Account Move Reversal"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Add Credit Note PL"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Add a line"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Add a note"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Add a section"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid ""
+"An invoice cannot be modified if it is associated with corrections.\n"
+"Delete corrections or create a new correction to an existing correction"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__corrected_invoice_line_ids
+msgid "Corrected Invoice Line"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__corrected_line
+msgid "Corrected Line"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Corrected Lines"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__corrected_amount_by_group
+msgid "Corrected Tax amount by group"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__corrected_amount_total
+msgid "Corrected Total"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__corrected_amount_untaxed
+msgid "Corrected Untaxed Amount"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "Correction Invoice"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__correction_invoices_ids
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+#, python-format
+msgid "Correction Invoices"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__correction_invoices_len
+msgid "Correction Invoices Len"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "Credit Note"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "Credit Note PL"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Description"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Disc.%"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.actions.report,name:trilab_invoice.account_invoices_pl
+msgid "Invoice PL"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__invoice_line_ids
+msgid "Invoice lines"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "It is not possible to issue two direct corrections for one correction."
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "It is not possible to issue two direct corrections for one invoice."
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model,name:trilab_invoice.model_account_move
+msgid "Journal Entries"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model,name:trilab_invoice.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Journal Items"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Note"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__original_invoice_line_ids
+msgid "Original Invoice Lines"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Original Lines"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__original_amount_by_group
+msgid "Original Tax amount by group"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__original_amount_total
+msgid "Original Total"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__original_amount_untaxed
+msgid "Original Untaxed Amount"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "Outstanding credits"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "Outstanding debits"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "Please define a sequence on your journal."
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Price"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__price_subtotal_inverse
+msgid "Price Subtotal Inverse"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__price_total_inverse
+msgid "Price Total Inverse"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__price_unit_inverse
+msgid "Price Unit Inverse"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_reversal__reason
+msgid "Reason"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__refund_invoice_id
+msgid "Refund Invoice"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.actions.act_window,name:trilab_invoice.action_view_account_move_reversal_pl
+msgid "Reverse"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move_reversal.py:0
+#, python-format
+msgid "Reverse Moves"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Sale Date"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__x_invoice_sale_date
+msgid "Sale date"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Section"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__selected_correction_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_reversal__selected_correction_invoice
+msgid "Selected Correction Invoice"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move_reversal.py:0
+#, python-format
+msgid "Single invoice only"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Subtotal"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__x_invoice_amount_summary
+msgid "Tax amount summary"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid ""
+"The field 'Customer' is required, please complete it to validate the "
+"Customer Invoice."
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid ""
+"The field 'Vendor' is required, please complete it to validate the Vendor "
+"Bill."
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "This move is configured to be auto-posted on %s"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "This move is configured to be auto-posted on {}"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "Total"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
+msgid "UoM"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "Vendor Correction Invoice"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.constraint,message:trilab_invoice.constraint_account_move_line_check_credit_debit
+msgid "Wrong credit or debit value in accounting entry!"
+msgstr ""
+
+#. module: trilab_invoice
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "You need to add a line before posting."
+msgstr ""

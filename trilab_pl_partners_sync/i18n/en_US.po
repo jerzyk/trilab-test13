@@ -1,0 +1,224 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* trilab_pl_partners_sync
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-03 12:33+0000\n"
+"PO-Revision-Date: 2019-09-03 12:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,help:trilab_pl_partners_sync.field_res_partner__nip_state
+#: model:ir.model.fields,help:trilab_pl_partners_sync.field_res_users__nip_state
+msgid "\n"
+"    Status odpowiada poniższej liście:\n"
+"    N - Podmiot o podanym identyfikatorze podatkowym NIP nie jest zarejestrowany jako podatnik VAT\n"
+"    C - Podmiot o podanym identyfikatorze podatkowym NIP jest zarejestrowany jako podatnik VAT czynny\n"
+"    Z - Podmiot o podanym identyfikatorze podatkowym NIP jest zarejestrowany jako podatnik VAT zwolniony\n"
+"    I - Błąd zapytania - Nieprawidłowy Numer Identyfikacji Podatkowej\n"
+"    D - Błąd zapytania - Data spoza ustalonego zakresu\n"
+"    X -Usługa nieaktywna"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.actions.act_window,name:trilab_pl_partners_sync.check_nip_act
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.view_partner_form_pl_sync
+msgid "Check NIP"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model,name:trilab_pl_partners_sync.model_res_partner_check_nip
+msgid "Check NIP Wizard"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model,name:trilab_pl_partners_sync.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model,name:trilab_pl_partners_sync.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:133
+#, python-format
+msgid "Customer must be from Poland"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_config_settings__gus_api_key
+msgid "GUS API Key"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__gus_update_date
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__gus_update_date
+msgid "GUS Update Date"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__gus_nip
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__gus_nip
+msgid "Gus Nip"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__id
+msgid "ID"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:77
+#, python-format
+msgid "Invalid NIP"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:67
+#, python-format
+msgid "Invalid NIP Length"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__krs
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__krs
+msgid "KRS/NR Ew."
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__nip_check_date
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__nip_check_date
+msgid "NIP Check Date"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__nip_state
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__nip_state
+msgid "NIP Status"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:56
+#, python-format
+msgid "NIP is incorrect: {}"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:92
+#, python-format
+msgid "NIP is not valid"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:73
+#, python-format
+msgid "Only digits allowed"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:45
+#, python-format
+msgid "Only polish Tax IDs are supported"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:85
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:129
+#, python-format
+msgid "Please set GUS API key in General Settings"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__regon
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__regon
+msgid "REGON"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:53
+#, python-format
+msgid "Record data found in GUS and updated!"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "Regon Integration Settings"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__res_partner_ids
+msgid "Res Partner"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.actions.server,name:trilab_pl_partners_sync.print_instance
+msgid "Res Partner Server Action"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:179
+#, python-format
+msgid "Specified invalid check mode (context)"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.view_partner_form_pl_sync
+msgid "Type NIP to load data from GUS"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.view_partner_form_pl_sync
+msgid "Update GUS Data"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.actions.act_window,name:trilab_pl_partners_sync.check_gus_act
+msgid "Update data from GUS"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:136
+#, python-format
+msgid "VAT is required"
+msgstr ""
+
