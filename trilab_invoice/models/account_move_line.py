@@ -15,7 +15,7 @@ class AccountMoveLine(models.Model):
         )
     ]
 
-    corrected_line = fields.Boolean()
+    corrected_line = fields.Boolean(default=False)
 
     def compute_inverse_values(self):
         for line in self:
