@@ -73,8 +73,8 @@ class AccountMove(models.Model):
     correction_invoices_ids = fields.One2many('account.move', 'refund_invoice_id')
     correction_invoices_len = fields.Integer(compute=compute_correction_invoices_len, store=False)
     refund_invoice_id = fields.Many2one('account.move')
-    # invoice_line_ids = fields.One2many(domain=[('exclude_from_invoice_tab', '=', False),
-    #                                            ('corrected_line', '=', False)])
+    invoice_line_ids = fields.One2many(domain=[('exclude_from_invoice_tab', '=', False),
+                                               ('corrected_line', '=', False)])
 
     original_invoice_line_ids = fields.Many2many(comodel_name='account.move.line',
                                                  string='Original Invoice Lines',
