@@ -21,6 +21,7 @@
                 <header attrs="{'invisible': [('id', '=', False)]}">
                     <button name="check_nip" string="Check NIP" type="object" class="oe_highlight"/>
                     <button name="update_gus_data" string="Update GUS Data" type="object" class="oe_highlight"/>
+                    <button name="check_krd" string="Check KRD" type="object" class="oe_highlight" />
                 </header>
             </sheet>
         </field>
