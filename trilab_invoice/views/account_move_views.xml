@@ -22,6 +22,10 @@
                         attrs="{'invisible': ['|', ('correction_invoices_len', '!=', 0), ('type', 'not in', ('out_invoice', 'out_refund','out_receipt'))]}"/>
             </button>
 
+            <button name="action_reverse" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </button>
+
             <field name="invoice_date" position="after">
                 <field name="x_invoice_sale_date" optional="show" invisible="context.get('default_type') not in ('out_invoice', 'out_refund','out_receipt')" string="Sale Date"/>
             </field>
