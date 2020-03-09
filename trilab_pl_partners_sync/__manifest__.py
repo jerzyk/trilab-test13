@@ -1,8 +1,8 @@
 # noinspection PyStatementEffect
 {
-    'name': "Trilab Partners Sync & Validation for Poland (GUS/REGON/KRD)",
+    'name': "Trilab Partners Sync for Poland (GUS/WHITELIST/KRD)",
 
-    'summary': "Sync Partner data from GUS (Główny Urząd Statystyczny) and validate it with KRD",
+    'summary': "Sync Partner data from GUS (Główny Urząd Statystyczny) and validate it with GUS/MF WHITELIST/KRD ",
     'author': 'Trilab',
     'website': "https://trilab.pl",
     'category': 'Accounting',

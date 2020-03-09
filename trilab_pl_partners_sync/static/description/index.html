@@ -13,13 +13,17 @@
                         with status change history.
                     </li>
                     <li>
-                        Mass actions:
-                        <ul>
-                            <li>mass validation of the VAT status of contractors</li>
-                            <li>mass update of data from the CSO / REGON database</li>
-                        </ul>
+                        Validating the status of parent in Bad Debtors Register - Krajowy Rejestr Długów,
+                        with status validation history.
                     </li>
                 </ol>
+                <p>
+                    Mass actions:
+                </p>
+                <ul>
+                    <li>mass validation of the VAT status of contractors</li>
+                    <li>mass update of data from the CSO / REGON database</li>
+                </ul>
 
                 <p>
                     To use this module, you need an API key obtained from
@@ -34,31 +38,36 @@
                 <ol>
                     <li>
                         Automatyczne podpowiadanie danych z bazy GUS/Regon w trakcie zakładania nowego lub edycji
-                        istniejącego kontrahenta.
-
+                        istniejącego kontrahenta.<br/>
                         <img src="scr1.png" width="600"/>
                     </li>
 
                     <li>
                         Sprawdzanie statusu podmiotu w VAT (w bazie danych Ministerstwa finansów) z zapisywaniem
                         historii w przypadku zmian statusu.
-
-                        <img src="scr2.png">
                     </li>
-
                     <li>
-                        Akcje masowe:
-                        <ul>
-                            <li>masowe sprawdzanie statusu VAT kontrahentów</li>
-                            <li>masowa aktualizacja danych z bazy GUS/REGON</li>
-                        </ul>
+                        Sprawdzanie statusu podmiotu bazie KRD - Krajowego Rejestru Długów
+                        z zapisywaniem historii weryfikacji.
+                        <br/>
+                        <img src="scr2.png" width="600"/>
                     </li>
                 </ol>
+                <p>
+                    Akcje masowe:
+                </p>
+                <ul>
+                    <li>masowe sprawdzanie statusu VAT kontrahentów</li>
+                    <li>masowa aktualizacja danych z bazy GUS/REGON</li>
+                </ul>
 
                 <p>
-                    Moduł ten wymaga klucza dostępu do API GUS. Klucz ten można uzyskać po zarejestrowaniu się na
-                    <a href="https://api.stat.gov.pl/Home/RegonApi">Stronie GUS</a>.
+                    Moduł ten wymaga:
                 </p>
+                <ul>
+                    <li> klucza dostępu do API GUS. Klucz ten można uzyskać po zarejestrowaniu się na href="https://api.stat.gov.pl/Home/RegonApi">Stronie GUS </li>
+                    <li> użytkownika u hasła do KRD (usługa oddzielnie płatba w KRD). </li>
+                </ul>
 
                 <p>
                     Moduł ten używa dwu zewnętrznych bibliotek python: '<code>gusregon</code>' and '<code>zeep</code>'.<br/>
@@ -78,17 +87,16 @@
         </div>
         <div class="col-md-12 pad0">
             <div class="oe_mt16">
-                <p><h4>
-                For any type of technical help & support requests, Feel free to contact us</h4></p>
+                <h4>For any type of technical help & support requests, Feel free to contact us</h4>
+                <p>
                 <a style="background: #002e5a  none repeat scroll 0% 0%; color: rgb(255, 255, 255);position: relative; overflow: hidden;"
                    class="btn btn-warning btn-lg" rel="nofollow" href="mailto:odoo@trilab.pl"><span
                         style="height: 354px; width: 354px; top: -147.433px; left: -6.93335px;" class="o_ripple"></span>
                     <i class="fa fa-envelope"></i> odoo@trilab.pl</a>
-                <p>
+                </p>
             </div>
             <div class="oe_mt16">
-                <p><h4>
-                Visit our website for more support.</h4></p>
+                <h4>Visit our website for more support.</h4>
                 <a style="background: #002e5a  none repeat scroll 0% 0%; color: rgb(255, 255, 255);position: relative; overflow: hidden;"
                    class="btn btn-warning btn-lg" rel="nofollow" href="https://trilab.pl" target="_blank"><span
                         style="height: 354px; width: 354px; top: -147.433px; left: -6.93335px;" class="o_ripple"></span>
