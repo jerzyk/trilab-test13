@@ -12,9 +12,9 @@
             <field name="vat" position="after">
                 <field name="regon"/>
                 <field name="krs"/>
-                <field name="nip_state" attrs="{'invisible': [('nip_state', '=', False)], 'readonly': 1}"/>
-                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)], 'readonly': 1}"/>
-                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)], 'readonly': 1}"/>
+                <field name="nip_state" attrs="{'invisible': [('nip_state', '=', False)]}" readonly="1"/>
+                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)]}" readonly="1"/>
+                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)]}" readonly="1"/>
             </field>
 
             <sheet position="before">
@@ -36,8 +36,8 @@
                 <field name="regon"/>
                 <field name="krs"/>
                 <field name="nip_state"/>
-                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)], 'readonly': 1}"/>
-                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)], 'readonly': 1}"/>
+                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)]}" readonly="1"/>
+                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)]}" readonly="1"/>
             </field>
         </field>
     </record>

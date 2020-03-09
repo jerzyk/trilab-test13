@@ -6,7 +6,7 @@
     'author': 'Trilab',
     'website': "https://trilab.pl",
     'category': 'Accounting',
-    'version': '13.1.9',
+    'version': '2.2',
     'depends': [
         'base',
         'contacts'
