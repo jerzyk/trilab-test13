@@ -359,7 +359,7 @@
 
         <record id="trilab_VAT7_19" model="account.financial.html.report">
             <field name="name">PL VAT 7</field>
-            <field name='parent_id' ref='l10n_pl.account_reports_pl_statements_menu'/>
+            <field name='parent_id' ref='trilab_jpk_base.jpk_report_menu'/>
             <field name="tax_report" eval="1"/>
         </record>
         <record id="trilab_VAT7_19_C" model="account.financial.html.report.line">
