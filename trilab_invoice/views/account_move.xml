@@ -28,11 +28,6 @@
             </th>
         </xpath>
 
-<!--        <xpath expr="//div[@name='origin']/strong" position="replace">-->
-<!--            <strong t-if="o.type == 'out_refund'">To invoice:</strong>-->
-<!--            <strong t-if="o.type != 'out_refund'">Source:</strong>-->
-<!--        </xpath>-->
-
         <!-- add sale date -->
         <xpath expr="//div[@name='due_date']" position="before">
             <div class="col-auto mw-100 mb-2" t-if="o.x_invoice_sale_date" name="x_invoice_sale_date">
@@ -50,14 +45,22 @@
             <span t-if="o.type == 'in_refund'">Vendor Correction Invoice</span>
         </span>
 
-        <div name="reference" position="replace">
-            <div class="col-auto mw-100 mb-2" t-if="o.ref">
-                <strong>Przyczyna korekty:</strong>
+        <div name="reference" position="attributes">
+            <attribute name="t-if">not o.type.endswith('_refund') and o.ref</attribute>"
+        </div>
+
+        <div name="reference" position="after">
+            <div class="col-auto mw-100 mb-2" t-if="o.type.endswith('_refund') and o.ref">
+                <strong>Correction reason:</strong>
                 <p class="m-0" t-field="o.ref"/>
             </div>
-            <div class="col-auto mw-100 mb-2" t-if="o.ref">
-                <strong>Faktura korygowana:</strong>
+            <div class="col-auto mw-100 mb-2" t-if="o.type.endswith('_refund') and o.ref">
+                <strong>Corrected invoice:</strong>
                 <p class="m-0" t-esc="o.refund_invoice_id.name"/>
+            </div>
+            <div class="col-auto mw-100 mb-2" t-if="o.type.endswith('_refund') and o.ref">
+                <strong>Original invoice date:</strong>
+                <p class="m-0" t-esc="o.refund_invoice_id.invoice_date"/>
             </div>
         </div>
 
@@ -76,7 +79,6 @@
                     <tr class="bg-200">
                         <t t-set="colspan" t-value="6"/>
                         <th name="th_description" class="text-left"><span>Description</span></th>
-<!--                        <th name="th_source" class="d-none text-left"><span>Source Document</span></th>-->
                         <th name="th_quantity" class="text-right"><span>Quantity</span></th>
                         <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Unit Price NET</span></th>
                         <th name="th_price_unit" t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
@@ -114,8 +116,6 @@
                                 </td>
                                 <td class="text-right o_price_total">
                                     <span t-field="line.price_subtotal_inverse" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-<!--                                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>-->
-<!--                                    <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>-->
                                 </td>
                             </t>
                             <t t-if="line.display_type == 'line_section'">
@@ -141,7 +141,6 @@
                     <tr class="bg-200">
                         <t t-set="colspan" t-value="6"/>
                         <th name="th_description" class="text-left"><span>Description</span></th>
-<!--                        <th name="th_source" class="d-none text-left"><span>Source Document</span></th>-->
                         <th name="th_quantity" class="text-right"><span>Quantity</span></th>
                         <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Unit Price NET</span></th>
                         <th name="th_price_unit" t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
@@ -174,8 +173,6 @@
                             </td>
                             <td class="text-right o_price_total">
                                 <span t-field="line.price_subtotal_inverse" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-<!--                                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>-->
-<!--                                    <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>-->
                             </td>
                         </tr>
                     </t>
@@ -186,7 +183,7 @@
 
         <!-- tax summary table -->
         <xpath expr="//div[@id='total']" position="replace">
-            <t t-set="vat_to_pln" t-value="o.currency_id.name != 'PLN'" />
+            <t t-set="vat_to_pln" t-value="o.currency_id.name != 'PLN' and o.company_id.currency_id.name == 'PLN'" />
             <div id="total" class="row">
                 <div t-attf-class="#{'col-7 offset-3' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto mb16">
                     <table class="table table-sm table-condensed" style="page-break-inside: avoid;">
@@ -261,27 +258,52 @@
             </div>
         </xpath>
 
+        <!-- bank transfer details -->
+        <p name="payment_term" position="after">
+			<t t-if="o.invoice_partner_bank_id" name="partner_bank_id">
+				Bank Account Number: <span t-field="o.invoice_partner_bank_id.acc_number"/>
+                <span t-if="o.currency_id.name != 'PLN' and o.invoice_partner_bank_id.bank_bic">
+                    &amp;bull;&amp;nbsp;BIC/SWIFT: <span t-field="o.invoice_partner_bank_id.bank_bic"/>
+                </span>
+			</t>
+        </p>
+
     </template>
 
-    <template id="report_invoice">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-set="lang" t-value="o.user_id.lang if o.type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
-                <t t-call="trilab_invoice.report_invoice_document" t-lang="lang"/>
+    <template id="report_invoice_document_with_payments" inherit_id="trilab_invoice.report_invoice_document" primary="True">
+        <xpath expr="//div[@id='total']/div/table" position="inside">
+            <t t-set="payments_vals" t-value="o._get_reconciled_info_JSON_values()"/>
+            <t t-foreach="payments_vals" t-as="payment_vals">
+                <tr>
+                    <td>
+                        <i class="oe_form_field text-right oe_payment_label">Paid on <t t-esc="payment_vals['date']" t-options='{"widget": "date"}'/></i>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="payment_vals['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                    </td>
+                </tr>
             </t>
+            <t t-if="len(payments_vals) > 0">
+                <tr class="border-black">
+                    <td><strong>Amount Due</strong></td>
+                    <td class="text-right">
+                         <span t-field="o.amount_residual"/>
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_invoice" inherit_id="account.report_invoice">
+        <t t-call="account.report_invoice_document" t-lang="lang" position="replace">
+            <t t-call="trilab_invoice.report_invoice_document" t-lang="lang" />
         </t>
     </template>
 
-    <report
-        id="account_invoices_pl"
-        model="account.move"
-        string="Invoice PL"
-        report_type="qweb-pdf"
-        name="trilab_invoice.report_invoice"
-        file="report_invoice"
-        attachment="(object.state in ('open','in_payment','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
-        print_report_name="(object._get_report_base_filename())"
-        groups="account.group_account_invoice"
-    />
+    <template id="report_invoice_with_payments" inherit_id="account.report_invoice_with_payments">
+        <t t-call="account.report_invoice_document_with_payments" t-lang="lang" position="replace">
+            <t t-call="trilab_invoice.report_invoice_document_with_payments" t-lang="lang"/>
+        </t>
+    </template>
 
 </odoo>

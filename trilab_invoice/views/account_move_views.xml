@@ -19,7 +19,11 @@
             <button name="action_reverse" position="after">
                 <button name="action_reverse_pl" string="Add Credit Note PL"
                         type='object' groups="account.group_account_invoice"
-                        attrs="{'invisible': ['|', ('state', '!=', 'posted'), ('correction_invoices_len', '!=', 0)]}"/>
+                        attrs="{'invisible': ['|', ('correction_invoices_len', '!=', 0), ('type', 'not in', ('out_invoice', 'out_refund','out_receipt'))]}"/>
+            </button>
+
+            <button name="action_reverse" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
             </button>
 
             <field name="invoice_date" position="after">
@@ -30,10 +34,6 @@
                 <field name="refund_invoice_id" readonly="1" attrs="{'invisible': [('refund_invoice_id', '=', False)]}"/>
                 <field name="selected_correction_invoice" readonly="1" attrs="{'invisible': [('selected_correction_invoice', '=', False)]}"/>
             </field>
-
-            <button name="action_reverse" position="attributes">
-                <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'posted'), ('correction_invoices_len', '!=', 0)]}</attribute>
-            </button>
 
             <div name="button_box" position="inside">
                 <button name="correction_invoices_view" class="oe_stat_button" icon="fa-bars" type="object"

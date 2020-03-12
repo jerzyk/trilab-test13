@@ -7,7 +7,6 @@ class AccountMoveReversal(models.TransientModel):
 
     _inherit = 'account.move.reversal'
 
-    reason = fields.Char(required=1)
     selected_correction_invoice = fields.Many2one('account.move')
 
     @api.model
@@ -91,7 +90,7 @@ class AccountMoveReversal(models.TransientModel):
 
         elif rec.refund_method == 'refund':
             # noinspection PyProtectedMember
-            new_moves = moves._reverse_moves(default_values_list)
+            new_moves = moves.with_context(check_move_validity=False)._reverse_moves(default_values_list)
 
         else:
             return

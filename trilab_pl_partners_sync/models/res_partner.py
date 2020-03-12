@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
 
-from datetime import date
+# noinspection PyProtectedMember
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError, UserError
 
 from gusregon import GUS
-from zeep import Client
+from zeep import Client, xsd
 
 MF_GOV_PL_WSDL = 'https://sprawdz-status-vat.mf.gov.pl/?wsdl'
+
+KRD_ENV = {
+    'prod': 'https://services.krd.pl/Chase/3.1/Search.svc?WSDL',
+    'test': 'https://demo.krd.pl/Chase/3.1/Search.svc?WSDL'
+}
 
 
 class ResPartner(models.Model):
@@ -32,6 +37,7 @@ class ResPartner(models.Model):
 
     def _gusnip_compute(self):
         self.gus_nip = '*unknown*'
+        # pass
 
     @api.onchange('gus_nip')
     def gusnip_change(self):
@@ -55,7 +61,8 @@ class ResPartner(models.Model):
                 return {'warning': {'title': 'GUS',
                                     'message': _('NIP is incorrect: {}').format(e.name)}}
 
-    def validate_pl_nip(self, value):
+    @staticmethod
+    def validate_pl_nip(value):
         """
         Calculates a checksum with the provided algorithm.
         """
@@ -102,7 +109,8 @@ class ResPartner(models.Model):
         return {
             'name': response.get('nazwa'),
             'street': ' '.join([response.get('adsiedzulica_nazwa', ''),
-                                response.get('adsiedznumernieruchomosci', '')]),
+                                response.get('adsiedznumernieruchomosci', ''),
+                                response.get('adsiedznumerlokalu', '')]),
             'street2': response.get('adsiedznietypowemiejscelokalizacji'),
             'city': response.get('adsiedzmiejscowosc_nazwa'),
             'state_id': poland_id.state_ids.search([('name',
@@ -116,7 +124,7 @@ class ResPartner(models.Model):
             'vat': nip,
             'regon': response.get('regon9') or response.get('regon14'),
             'krs': response.get('numerwrejestrzeewidencji'),
-            'gus_update_date': date.today()
+            'gus_update_date': fields.Date.today()
         }
 
     def update_gus_data(self):
@@ -147,7 +155,43 @@ class ResPartner(models.Model):
             client = Client(MF_GOV_PL_WSDL)
             response = client.service.SprawdzNIP(''.join(c for c in partner.vat if c.isdigit()))
             partner.nip_state = response['Kod']
-            partner.nip_check_date = date.today()
+            partner.nip_check_date = fields.Date.today()
+
+    def check_krd(self):
+        self.ensure_one()
+        company = self.env.user.company_id
+        if not company.krd_login or not company.krd_pass:
+            raise ValidationError(_('Please set KRD login and password in company settings'))
+        if not self.country_id or self.country_id.code != 'PL':
+            raise ValidationError(_('The company must be registered in Poland'))
+        if not self.vat:
+            raise ValidationError(_('VAT is required'))
+
+        client = Client(KRD_ENV[company.krd_env])
+
+        auth_header = xsd.Element('{http://krd.pl/Authorization}Authorization', xsd.ComplexType([
+            xsd.Element('{http://krd.pl/Authorization}AuthorizationType', xsd.String()),
+            xsd.Element('{http://krd.pl/Authorization}Login', xsd.String()),
+            xsd.Element('{http://krd.pl/Authorization}Password', xsd.String()),
+        ]))
+
+        auth_value = auth_header(
+            AuthorizationType='LoginAndPassword',
+            Login=company.krd_login,
+            Password=company.krd_pass)
+
+        response = client.service.SearchNonConsumer(
+            NumberType='TaxId',
+            Number=self.vat,
+            _soapheaders=[auth_value],
+        )
+
+        response = dict(
+            Summary=response['body']['DisclosureReport']['Summary'],
+            PositiveInformationSummary=response['body']['DisclosureReport']['PositiveInformationSummary'],
+        )
+
+        self.message_post(body=self.env['ir.qweb'].render('trilab_pl_partners_sync.krd_result', response))
 
 
 class ResPartnercheckNip(models.TransientModel):
@@ -156,6 +200,7 @@ class ResPartnercheckNip(models.TransientModel):
 
     res_partner_ids = fields.Many2many('res.partner')
 
+    # noinspection PyShadowingNames
     @api.model
     def default_get(self, fields):
         poland = self.env.ref('base.pl')

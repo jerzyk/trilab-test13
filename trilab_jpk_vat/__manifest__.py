@@ -15,7 +15,7 @@
     'website': "https://trilab.pl",
 
     'category': 'Accounting',
-    'version': '1.10.1',
+    'version': '1.9',
 
     'depends': ['base', 'account', 'account_reports', 'trilab_jpk_base'],
 

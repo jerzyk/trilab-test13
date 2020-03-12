@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* trilab_pl_partners_sync
+# 	* trilab_pl_partners_sync
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-03 12:33+0000\n"
-"PO-Revision-Date: 2019-09-03 12:33+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2020-03-09 10:38+0000\n"
+"PO-Revision-Date: 2020-03-09 10:38+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,14 +18,45 @@ msgstr ""
 #. module: trilab_pl_partners_sync
 #: model:ir.model.fields,help:trilab_pl_partners_sync.field_res_partner__nip_state
 #: model:ir.model.fields,help:trilab_pl_partners_sync.field_res_users__nip_state
-msgid "\n"
+msgid ""
+"\n"
 "    Status odpowiada poniższej liście:\n"
 "    N - Podmiot o podanym identyfikatorze podatkowym NIP nie jest zarejestrowany jako podatnik VAT\n"
 "    C - Podmiot o podanym identyfikatorze podatkowym NIP jest zarejestrowany jako podatnik VAT czynny\n"
 "    Z - Podmiot o podanym identyfikatorze podatkowym NIP jest zarejestrowany jako podatnik VAT zwolniony\n"
 "    I - Błąd zapytania - Nieprawidłowy Numer Identyfikacji Podatkowej\n"
 "    D - Błąd zapytania - Data spoza ustalonego zakresu\n"
-"    X -Usługa nieaktywna"
+"    X - Usługa nieaktywna"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "&amp;nbsp;"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "<span class=\"o_form_label\">Główny Urząd Statystyczny</span>"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "<span class=\"o_form_label\">Krajowy Rejestr Długów</span>"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "<strong>Wynik zapytania z Krajowego Rejestru Długów</strong>"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "API Key"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.view_partner_form_pl_sync
+msgid "Check KRD"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
@@ -37,6 +68,11 @@ msgstr ""
 #. module: trilab_pl_partners_sync
 #: model:ir.model,name:trilab_pl_partners_sync.model_res_partner_check_nip
 msgid "Check NIP Wizard"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model,name:trilab_pl_partners_sync.model_res_company
+msgid "Companies"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
@@ -60,7 +96,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:133
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Customer must be from Poland"
 msgstr ""
@@ -68,6 +104,11 @@ msgstr ""
 #. module: trilab_pl_partners_sync
 #: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner_check_nip__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "Environment"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
@@ -93,21 +134,64 @@ msgid "ID"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:77
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Ilość informacji gospodarczych"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Ilość posłużeń sfałszowanym dokumentem"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Ilość wierzycieli dłużnika"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Ilość wierzycieli kontrahenta"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Invalid NIP"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:67
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Invalid NIP Length"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Iość spraw dotyczących zobowiązaniań negatywnych"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_company__krd_login
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_config_settings__krd_login
+msgid "KRD Login"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_company__krd_pass
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_config_settings__krd_pass
+msgid "KRD Password"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
 #: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__krs
 #: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__krs
 msgid "KRS/NR Ew."
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_company__krd_env
+#: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_config_settings__krd_env
+msgid "Krd Env"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
@@ -126,6 +210,16 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "Login"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "NIESPŁACONE ZOBOWIĄZANIA:"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
 #: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_partner__nip_check_date
 #: model:ir.model.fields,field_description:trilab_pl_partners_sync.field_res_users__nip_check_date
 msgid "NIP Check Date"
@@ -138,34 +232,50 @@ msgid "NIP Status"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:56
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "NIP is incorrect: {}"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:92
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "NIP is not valid"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:73
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Only digits allowed"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:45
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Only polish Tax IDs are supported"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:85
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:129
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "Password"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Please set GUS API key in General Settings"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
+#, python-format
+msgid "Please set KRD login and password in company settings"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields.selection,name:trilab_pl_partners_sync.selection__res_company__krd_env__prod
+msgid "Production"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
@@ -175,14 +285,9 @@ msgid "REGON"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:53
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Record data found in GUS and updated!"
-msgstr ""
-
-#. module: trilab_pl_partners_sync
-#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
-msgid "Regon Integration Settings"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
@@ -191,14 +296,35 @@ msgid "Res Partner"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: model:ir.actions.server,name:trilab_pl_partners_sync.print_instance
-msgid "Res Partner Server Action"
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "SPŁACONE ZOBOWIĄZANIA"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:179
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "Specified invalid check mode (context)"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Suma spłaconych zobowiązań"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model:ir.model.fields.selection,name:trilab_pl_partners_sync.selection__res_company__krd_env__test
+msgid "Testing"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
+#, python-format
+msgid "The company must be registered in Poland"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.res_config_settings_view_form_inherit
+msgid "Trilab Partners Sync (GUS/REGON/KRS/KRD)"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
@@ -217,8 +343,33 @@ msgid "Update data from GUS"
 msgstr ""
 
 #. module: trilab_pl_partners_sync
-#: code:addons/trilab_pl_partners_sync/models/res_partner.py:136
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
+#: code:addons/trilab_pl_partners_sync/models/res_partner.py:0
 #, python-format
 msgid "VAT is required"
 msgstr ""
 
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Łączna ilość zobowiązań negatywnych"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Łączna ilość zobowiązań pozytywnych"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Łączna suma długów"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Średnia ilość dni: termin płatnościa a wymagalności"
+msgstr ""
+
+#. module: trilab_pl_partners_sync
+#: model_terms:ir.ui.view,arch_db:trilab_pl_partners_sync.krd_result
+msgid "Średnia wartość spłaconych zobowiązań"
+msgstr ""

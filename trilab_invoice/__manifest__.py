@@ -5,11 +5,11 @@
     'name': 'Trilab Invoice PL',
     'author': 'Trilab',
     'website': "https://trilab.pl",
-    'version': '2.2.3',
+    'version': '2.5',
     'category': 'Accounting',
     'summary': 'Base module to manage invoice in PL',
     'description': '''Base module to manage invoices and invoice correction
-     according to Polish law and best practises''',
+    according to Polish law and best practices''',
     'depends': [
         'web',
         'account',

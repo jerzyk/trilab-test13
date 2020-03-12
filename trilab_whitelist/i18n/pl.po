@@ -1,0 +1,69 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* trilab_whitelist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-13 10:18+0000\n"
+"PO-Revision-Date: 2019-09-13 10:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: trilab_whitelist
+#: code:addons/trilab_whitelist/models/account_invoice.py:42
+#, python-format
+msgid "Error accessing MF API: [{}]{}"
+msgstr "Błąd dostępu do API MF: [{}]{}"
+
+#. module: trilab_whitelist
+#: code:addons/trilab_whitelist/models/account_invoice.py:40
+#, python-format
+msgid "Error from MF API: {}"
+msgstr "Błąd zwrcony przexz API MF: {}"
+
+#. module: trilab_whitelist
+#: model:ir.model,name:trilab_whitelist.model_account_invoice
+msgid "Invoice"
+msgstr "Faktura"
+
+#. module: trilab_whitelist
+#: code:addons/trilab_whitelist/models/account_invoice.py:38
+#, python-format
+msgid "NEGATIVE"
+msgstr "NEGTYWNA"
+
+#. module: trilab_whitelist
+#: code:addons/trilab_whitelist/models/account_invoice.py:36
+#, python-format
+msgid "POSITIVE"
+msgstr "POZYTYWNA"
+
+#. module: trilab_whitelist
+#: code:addons/trilab_whitelist/models/account_invoice.py:24
+#, python-format
+msgid "Partner account number is missing"
+msgstr "Brakuje numeru konta partnera"
+
+#. module: trilab_whitelist
+#: code:addons/trilab_whitelist/models/account_invoice.py:21
+#, python-format
+msgid "Partner is missing VAT number"
+msgstr "Partner nie ma podanego numeru NIP"
+
+#. module: trilab_whitelist
+#: model:ir.actions.server,name:trilab_whitelist.action_invoice_check_whitelist_bank_account
+msgid "Validate Bank Account (whitelist)"
+msgstr "Sprawdź konto bankowe (whitelist)"
+
+#. module: trilab_whitelist
+#: code:addons/trilab_whitelist/models/account_invoice.py:34
+#, python-format
+msgid "Whitelist validation status {}, confirmation id: {}"
+msgstr "Status walidacji whitelisty {}, nr potwierdzenia: {}"
+

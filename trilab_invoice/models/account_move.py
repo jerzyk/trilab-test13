@@ -73,7 +73,8 @@ class AccountMove(models.Model):
     correction_invoices_ids = fields.One2many('account.move', 'refund_invoice_id')
     correction_invoices_len = fields.Integer(compute=compute_correction_invoices_len, store=False)
     refund_invoice_id = fields.Many2one('account.move')
-    invoice_line_ids = fields.One2many(domain=[('exclude_from_invoice_tab', '=', False)])
+    # invoice_line_ids = fields.One2many(domain=[('exclude_from_invoice_tab', '=', False),
+    #                                            ('corrected_line', '=', False)])
 
     original_invoice_line_ids = fields.Many2many(comodel_name='account.move.line',
                                                  string='Original Invoice Lines',
@@ -86,7 +87,7 @@ class AccountMove(models.Model):
     original_amount_total = fields.Monetary(string='Original Total', readonly=True,
                                             related='refund_invoice_id.amount_total', track_visibility=False)
 
-    corrected_invoice_line_ids = fields.One2many(comodel_name='account.move.line', inverse_name='move_id',
+    corrected_invoice_line_ids = fields.One2many(comodel_name='account.move.line',  inverse_name='move_id',
                                                  domain=[('exclude_from_invoice_tab', '=', False),
                                                          ('corrected_line', '=', True)])
     corrected_amount_untaxed = fields.Monetary(string='Corrected Untaxed Amount', readonly=True)
@@ -95,39 +96,51 @@ class AccountMove(models.Model):
 
     selected_correction_invoice = fields.Many2one('account.move')
 
-    x_invoice_sale_date = fields.Date(string='Sale date')
+    x_invoice_sale_date = fields.Date(string='Sale date', default=fields.Datetime.now)
     x_invoice_amount_summary = fields.Binary(string="Tax amount summary", compute='_compute_invoice_taxes_by_group')
 
     @api.model
-    def create(self, vals):
-        invoice = super(AccountMove, self).create(vals)
-        if invoice.type in ['in_refund', 'out_refund']:
-            invoice.refund_invoice_id = vals.get('reversed_entry_id')
+    def _move_autocomplete_invoice_lines_create(self, vals_list):
+        result = super(AccountMove, self)._move_autocomplete_invoice_lines_create(vals_list)
+        for vals in result:
+            if vals.get('type') not in ['in_refund', 'out_refund'] and 'corrected_invoice_line_ids' in vals:
+                del(vals['corrected_invoice_line_ids'])
+        return result
 
-            if invoice.selected_correction_invoice:
-                invoice.invoice_line_ids.unlink()
-                for line in invoice.selected_correction_invoice.corrected_invoice_line_ids:
-                    copied = line.copy(default={'move_id': invoice.id,
-                                                'price_unit': -line.price_unit,
-                                                'corrected_line': False})
-                    copied.price_unit = -line.price_unit
-                    copied.run_onchanges()
-                for line in invoice.selected_correction_invoice.corrected_invoice_line_ids:
-                    copied = line.copy(default={'move_id': invoice.id,
-                                                'price_unit': line.price_unit,
-                                                'corrected_line': True})
-                    copied.price_unit = line.price_unit
-                    copied.run_onchanges()
-            else:
-                for line in invoice.invoice_line_ids:
-                    copied = line.copy(default={'corrected_line': True, 'move_id': invoice.id})
-                    copied.price_unit = -line.price_unit
-                    copied.run_onchanges()
+    @api.model_create_multi
+    def create(self, vals_list):
+        invoice_ids = super(AccountMove, self).create(vals_list)
+        for invoice, vals in zip(invoice_ids, vals_list):
+            if invoice.type in ['in_refund', 'out_refund']:
+                invoice.refund_invoice_id = vals.get('reversed_entry_id')
 
-        invoice._onchange_invoice_line_ids()
-        invoice._compute_invoice_taxes_by_group()
+                if invoice.selected_correction_invoice:
+                    invoice.invoice_line_ids.with_context(check_move_validity=False).unlink()
+                    for line in invoice.selected_correction_invoice.corrected_invoice_line_ids:
+                        copied = line.with_context(check_move_validity=False)\
+                            .copy(default={'move_id': invoice.id,
+                                           'price_unit': -line.price_unit,
+                                           'corrected_line': False})
+                        copied.price_unit = -line.price_unit
+                        copied.run_onchanges()
+                    for line in invoice.selected_correction_invoice.corrected_invoice_line_ids:
+                        copied = line.with_context(check_move_validity=False)\
+                            .copy(default={'move_id': invoice.id,
+                                           'price_unit': line.price_unit,
+                                           'corrected_line': True})
+                        copied.price_unit = line.price_unit
+                        copied.run_onchanges()
+                else:
+                    for line in invoice.invoice_line_ids:
+                        copied = line.with_context(check_move_validity=False).copy(default={'corrected_line': True,
+                                                                                            'move_id': invoice.id})
+                        copied.price_unit = -line.price_unit
+                        copied.run_onchanges()
 
-        return invoice
+                invoice.with_context(check_move_validity=False)._onchange_invoice_line_ids()
+                invoice._compute_invoice_taxes_by_group()
+
+        return invoice_ids
 
     @api.constrains('corrected_invoice_line_ids', 'type')
     def constrains_correction_data(self):
@@ -172,9 +185,6 @@ class AccountMove(models.Model):
         return action
 
     # changes in existing methods
-
-    def _check_balanced(self):
-        pass
 
     def post(self):
         date_format = self.env['res.lang']._lang_get(self.env.user.lang).date_format
@@ -316,29 +326,42 @@ class AccountMove(models.Model):
                 move.invoice_outstanding_credits_debits_widget = json.dumps(info)
                 move.invoice_has_outstanding = True
 
+    # noinspection PyMethodMayBeStatic
+    def _format_float(self, number, currency, env):
+        return formatLang(env, 0.0 if currency.is_zero(number) else number, currency_obj=currency)
+
     def _compute_invoice_taxes_by_group(self):
+        class NotSet:
+            id = False
+            name = ''
+            sequence = -1
+
+        blank = NotSet()
+
         for invoice in self:
             lang_env = invoice.with_context(lang=invoice.partner_id.lang).env
-            tax_lines = invoice.line_ids.filtered(lambda _line: _line.tax_line_id)
             pln = self.env.ref('base.PLN')
             sign = -1 if invoice.type.endswith('_refund') else 1
             res = {}
             summary = {'base': 0.0, 'amount': 0.0, 'in_pln': 0.0}
 
-            # There are as many tax line as there are repartition lines
-            done_taxes = set()
-            for line in tax_lines:
-                res.setdefault(line.tax_line_id.tax_group_id, {'base': 0.0, 'amount': 0.0, 'in_pln': 0.0})
-                res[line.tax_line_id.tax_group_id]['amount'] += line.price_subtotal
-                res[line.tax_line_id.tax_group_id]['in_pln'] += -line.balance
-                summary['amount'] += line.price_subtotal
-                summary['in_pln'] += -line.balance
-                tax_key_add_base = tuple(invoice._get_tax_key_for_group_add_base(line))
-                if tax_key_add_base not in done_taxes:
-                    # The base should be added ONCE
-                    res[line.tax_line_id.tax_group_id]['base'] += line.tax_base_amount
-                    summary['base'] += line.tax_base_amount
-                    done_taxes.add(tax_key_add_base)
+            # tax lines
+            for line in invoice.line_ids:
+                if line.tax_line_id:
+                    res.setdefault(line.tax_line_id.tax_group_id, {'base': 0.0, 'amount': 0.0, 'in_pln': 0.0})
+                    res[line.tax_line_id.tax_group_id]['amount'] += line.price_subtotal
+                    res[line.tax_line_id.tax_group_id]['in_pln'] += -line.balance
+                    summary['amount'] += line.price_subtotal
+                    summary['in_pln'] += -line.balance
+                elif line.tax_ids:
+                    for tax in line.tax_ids:
+                        res.setdefault(tax.tax_group_id, {'base': 0.0, 'amount': 0.0, 'in_pln': 0.0})
+                        res[tax.tax_group_id]['base'] += line.price_subtotal
+                        summary['base'] += line.price_subtotal
+                elif not line.exclude_from_invoice_tab:
+                    res.setdefault(blank, {'base': 0.0, 'amount': 0.0, 'in_pln': 0.0})
+                    res[blank]['base'] += line.price_subtotal
+                    summary['base'] += line.price_subtotal
 
             res = sorted(res.items(), key=lambda l: l[0].sequence)
 
@@ -346,20 +369,32 @@ class AccountMove(models.Model):
                 group.name,
                 amounts['amount'] * sign,
                 amounts['base'] * sign,
-                formatLang(lang_env, amounts['amount'] * sign, currency_obj=invoice.currency_id),
-                formatLang(lang_env, amounts['base'] * sign, currency_obj=invoice.currency_id),
+                self._format_float(amounts['amount'] * sign, invoice.currency_id, lang_env),
+                self._format_float(amounts['base'] * sign, invoice.currency_id, lang_env),
                 len(res),
                 group.id,
-                formatLang(lang_env, amounts['in_pln'] * sign, currency_obj=pln),
+                self._format_float(amounts['in_pln'] * sign, pln, lang_env),
             ) for group, amounts in res]
 
             invoice.x_invoice_amount_summary = {
-                'base': formatLang(lang_env, summary['base'] * sign, currency_obj=invoice.currency_id),
-                'amount': formatLang(lang_env, summary['amount'] * sign, currency_obj=invoice.currency_id),
-                'in_pln': formatLang(lang_env, summary['in_pln'] * sign, currency_obj=pln),
-                'total': formatLang(lang_env, (summary['base'] + summary['amount']) * sign,
-                                    currency_obj=invoice.currency_id)
+                'base': self._format_float(summary['base'] * sign, invoice.currency_id, lang_env),
+                'amount': self._format_float(summary['amount'] * sign, invoice.currency_id, lang_env),
+                'in_pln': self._format_float(summary['in_pln'] * sign, pln, lang_env),
+                'total': self._format_float((summary['base'] + summary['amount']) * sign, invoice.currency_id, lang_env)
             }
+
+    def _reverse_move_vals(self, default_values, cancel=True):
+        force_type = None
+        if 'selected_correction_invoice' in default_values and default_values['selected_correction_invoice']:
+            selected_correction_invoice_id = self.browse([default_values['selected_correction_invoice']])
+            force_type = selected_correction_invoice_id.type
+
+        result = super(AccountMove, self)._reverse_move_vals(default_values, cancel)
+
+        if force_type:
+            result['type'] = force_type
+
+        return result
 
     def action_reverse_pl(self):
         action = self.env.ref('trilab_invoice.action_view_account_move_reversal_pl').read()[0]

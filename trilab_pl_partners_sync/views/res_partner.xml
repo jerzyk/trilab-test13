@@ -12,15 +12,16 @@
             <field name="vat" position="after">
                 <field name="regon"/>
                 <field name="krs"/>
-                <field name="nip_state" attrs="{'invisible': [('nip_state', '=', False)], 'readonly': 1}"/>
-                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)], 'readonly': 1}"/>
-                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)], 'readonly': 1}"/>
+                <field name="nip_state" attrs="{'invisible': [('nip_state', '=', False)]}" readonly="1"/>
+                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)]}" readonly="1"/>
+                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)]}" readonly="1"/>
             </field>
 
             <sheet position="before">
                 <header attrs="{'invisible': [('id', '=', False)]}">
                     <button name="check_nip" string="Check NIP" type="object" class="oe_highlight"/>
                     <button name="update_gus_data" string="Update GUS Data" type="object" class="oe_highlight"/>
+                    <button name="check_krd" string="Check KRD" type="object" class="oe_highlight" />
                 </header>
             </sheet>
         </field>
@@ -35,8 +36,8 @@
                 <field name="regon"/>
                 <field name="krs"/>
                 <field name="nip_state"/>
-                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)], 'readonly': 1}"/>
-                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)], 'readonly': 1}"/>
+                <field name="nip_check_date" attrs="{'invisible': [('nip_check_date', '=', False)]}" readonly="1"/>
+                <field name="gus_update_date" attrs="{'invisible': [('gus_update_date', '=', False)]}" readonly="1"/>
             </field>
         </field>
     </record>
