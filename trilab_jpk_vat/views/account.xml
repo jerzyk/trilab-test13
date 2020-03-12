@@ -1,0 +1,16 @@
+<odoo>
+    <record id="account_tag_view_form_jpk" model="ir.ui.view">
+        <field name="model">account.account.tag</field>
+        <field name="inherit_id" ref="account.account_tag_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet[1]/group[1]" position="after">
+                <group string="JPK">
+                    <field name="jpk_document_type"/>
+                    <field name="jpk_markup"/>
+                    <field name="jpk_section"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
