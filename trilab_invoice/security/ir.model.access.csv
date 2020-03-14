@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_account_move_line_corrected_uinvoice,account.move.line invoice,model_account_move_line_corrected,account.group_account_invoice,1,1,1,1
-access_account_invoice_line_corrected_portal,account.move.line.portal,model_account_move_line_corrected,base.group_portal,1,0,0,0
-access_account_move_line_corrected_manager,account.move.line manager,model_account_move_line_corrected,account.group_account_manager,1,0,0,0
