@@ -70,11 +70,19 @@ class AccountMove(models.Model):
                 corrections = invoice.get_connected_corrections()
                 invoice.correction_invoices_len = len(corrections)
 
-    correction_invoices_ids = fields.One2many('account.move', 'refund_invoice_id')
-    correction_invoices_len = fields.Integer(compute=compute_correction_invoices_len, store=False)
+    def compute_corrected_invoice_lines(self):
+        for invoice in self:
+            invoice.corrected_invoice_line_ids = self.env['account.move.line'].search([
+                ('move_id', '=', invoice.id),
+                ('exclude_from_invoice_tab', '=', False),
+                ('corrected_line', '=', True)
+            ])
+
+    correction_invoices_ids = fields.One2many('account.move', 'refund_invoice_id', readonly=True)
+    correction_invoices_len = fields.Integer(compute=compute_correction_invoices_len, store=False, readonly=True)
     refund_invoice_id = fields.Many2one('account.move')
-    # invoice_line_ids = fields.One2many(domain=[('exclude_from_invoice_tab', '=', False),
-    #                                            ('corrected_line', '=', False)])
+    invoice_line_ids = fields.One2many(domain=[('exclude_from_invoice_tab', '=', False),
+                                               ('corrected_line', '=', False)])
 
     original_invoice_line_ids = fields.Many2many(comodel_name='account.move.line',
                                                  string='Original Invoice Lines',
@@ -87,9 +95,12 @@ class AccountMove(models.Model):
     original_amount_total = fields.Monetary(string='Original Total', readonly=True,
                                             related='refund_invoice_id.amount_total', track_visibility=False)
 
-    corrected_invoice_line_ids = fields.One2many(comodel_name='account.move.line',  inverse_name='move_id',
-                                                 domain=[('exclude_from_invoice_tab', '=', False),
-                                                         ('corrected_line', '=', True)])
+    corrected_invoice_line_ids = fields.One2many(comodel_name='account.move.line',
+                                                 compute=compute_corrected_invoice_lines,
+                                                 store=False)
+    # corrected_invoice_line_ids = fields.One2many(comodel_name='account.move.line',  inverse_name='move_id',
+    #                                              domain=[('exclude_from_invoice_tab', '=', False),
+    #                                                      ('corrected_line', '=', True)], readonly=True)
     corrected_amount_untaxed = fields.Monetary(string='Corrected Untaxed Amount', readonly=True)
     corrected_amount_by_group = fields.Binary(string='Corrected Tax amount by group')
     corrected_amount_total = fields.Monetary(string='Corrected Total', readonly=True)
@@ -137,21 +148,22 @@ class AccountMove(models.Model):
                         copied.price_unit = -line.price_unit
                         copied.run_onchanges()
 
+                invoice.compute_corrected_invoice_lines()
                 invoice.with_context(check_move_validity=False)._onchange_invoice_line_ids()
                 invoice._compute_invoice_taxes_by_group()
 
         return invoice_ids
 
-    @api.constrains('corrected_invoice_line_ids', 'type')
-    def constrains_correction_data(self):
-        for invoice in self:
-            if invoice.type in ['in_refund', 'out_refund'] and invoice.corrected_invoice_line_ids:
-
-                for line in invoice.invoice_line_ids:
-                    line.run_onchanges()
-
-                invoice._onchange_invoice_line_ids()
-                invoice._compute_invoice_taxes_by_group()
+    # @api.constrains('corrected_invoice_line_ids', 'type')
+    # def constrains_correction_data(self):
+    #     for invoice in self:
+    #         if invoice.type in ['in_refund', 'out_refund'] and invoice.corrected_invoice_line_ids:
+    #
+    #             for line in invoice.invoice_line_ids:
+    #                 line.run_onchanges()
+    #
+    #             invoice._onchange_invoice_line_ids()
+    #             invoice._compute_invoice_taxes_by_group()
 
     def correction_invoices_view(self):
         view_data = {
